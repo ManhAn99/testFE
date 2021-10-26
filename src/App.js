@@ -1,25 +1,28 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState } from "react";
+import RoomList from "./components/RoomList/RoomList";
+import NavBar from "./components/Navbar/NavBar";
+import styled from "styled-components";
+import infoRooms from './data.json'
 
 function App() {
+   const [rooms,setRooms] = useState(infoRooms)
+
+   const handleClick = rooms => {
+     setRooms(rooms)
+   }
+
+   console.log(rooms)
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Container>
+       <NavBar handleClick = {handleClick} />
+ 
+         <RoomList  rooms = {rooms} />
+   
+    </Container>
   );
 }
 
 export default App;
+const Container = styled.div`
+
+`
